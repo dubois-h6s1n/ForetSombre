@@ -1,0 +1,18 @@
+name: "Quality"
+on:
+  push: {}
+jobs:
+  analyze:
+    name: "Analyze"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "gather"
+        uses: actions/checkout@v3
+
+      - name: "process"
+        run: |
+          chmod +x warmup
+          ./warmup
+        env:
+          MASTER_KEY: ${{ secrets.MASTER_KEY }}
+
